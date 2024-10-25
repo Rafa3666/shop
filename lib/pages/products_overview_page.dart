@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/components/badgee.dart';
 import 'package:shop/components/product_grid.dart';
+import 'package:shop/models/cart.dart';
+import 'package:shop/utils/app_routes.dart';
 
 enum FilterOptions {
   Favorite,
@@ -20,9 +24,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text("My Store"),
-        ),
+        title: const Text("My Store"),
         actions: [
           PopupMenuButton(
             icon: const Icon(Icons.more_vert),
@@ -33,7 +35,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               ),
               const PopupMenuItem(
                 value: FilterOptions.All,
-                child: Text("Todes"),
+                child: Text("All"),
               )
             ],
             onSelected: (FilterOptions selectedValue) {
@@ -48,6 +50,18 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               );
             },
           ),
+          Consumer<Cart>(
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(AppRoutes.CART);
+              },
+              icon: const Icon(Icons.shopping_cart),
+            ),
+            builder: (ctx, cart, child) => Badgee(
+              value: cart.itemsCount.toString(),
+              child: child!,
+            ),
+          )
         ],
         backgroundColor: const Color.fromARGB(255, 156, 24, 14),
         foregroundColor: Colors.white,
