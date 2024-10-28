@@ -21,13 +21,14 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => ProductList(),
+          create: (_) => ProductList(), // Gerenciamento da lista de produtos.
         ),
         ChangeNotifierProvider(
-          create: (_) => Cart(),
+          create: (_) => Cart(), // Adiciona os produtos no carrinho.
         ),
         ChangeNotifierProvider(
-          create: (_) => OrderList(),
+          create: (_) =>
+              OrderList(), // Adiciona os produtos comprados em ("My Orders")
         ),
       ],
       child: MaterialApp(
