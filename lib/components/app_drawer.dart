@@ -15,7 +15,6 @@ class AppDrawer extends StatelessWidget {
             backgroundColor: const Color.fromARGB(255, 156, 24, 14),
             foregroundColor: Colors.white,
           ),
-          const Divider(),
           ListTile(
             leading: const Icon(Icons.shop),
             title: const Text("Store"),
@@ -32,6 +31,16 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
                 AppRoutes.ORDERS,
+              );
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.edit),
+            title: const Text("Manage Products"),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(
+                AppRoutes.PRODUCTS,
               );
             },
           ),
